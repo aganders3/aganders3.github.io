@@ -11,7 +11,8 @@ Yield Curve Viewer
 ------------------
 *A Flask-based web app for viewing The Yield Curve*
 
-[Yield Curve Viewer](http://yield.aga3.xyz)
+*Offline due to change in the Treasury RSS feed - needs updating to accomodate new format*
+([source](https://github.com/aganders3/yield-curve))
 
 The Yield Curve refers to the "curve" of US Treasury Bond yields, and is a
 financial [indicator](http://www.npr.org/indicator) with a track record for

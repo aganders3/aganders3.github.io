@@ -10,7 +10,7 @@ I write a lot of Python, but I wanted to get back into practice with a
 lower-level language. I've done a decent amount of C and C++ programming, but
 it seems like everyone who tries Rust really likes it so I took it for a spin.
 
-You can find my code for this project on GitHub: https://github.com/aganders3/wasm-ray
+You can find my code for [this project on GitHub](https://github.com/aganders3/wasm-ray).
 
 # Learning Rust
 
@@ -22,7 +22,7 @@ Course](https://github.com/rust-lang/rustlings/).
 
 Finally, I picked a couple projects:
 
-1. I wrote a simple [`shell`](https://github.com/aganders3/rush) in the
+1. I wrote a simple [shell](https://github.com/aganders3/rush) in the
 spirit of an assignment I found from a [CS course at my alma
 mater](http://pages.cs.wisc.edu/~dusseau/Classes/CS537-F07/Projects/P1/p1.html) 
 2. I wanted to do something more visual; I work in medical imaging and enjoyed
@@ -38,14 +38,21 @@ intentionally general to allow freedom in selection of programming language and
 certain implementation details. It's really a great framework for
 non-copy-paste learning. On top of that, graphics programming is a great tool
 for learning a language because you can do visual debugging and get the
-satisfaction of making an image (as opposed to, say, calculating pi).
+satisfaction of making an image (as opposed to, say, calculating the Fibonacci
+sequence).
 
-I was also drawn to Rust with some interest in WebAssembly (or wasm). That was
+I was also drawn to Rust with some interest in WebAssembly (aka wasm). That was
 intended to be a larger part of this project, but I ended up hitting some
 performance bottlenecks early that made it less fun. I may revisit this because
 having a live demo is pretty cool, but for now I have decided to proceed with
 the rest of the rendering features first. Perhaps I'll write more on this
 later.
+
+As a teaser, here's the final render from my implementation of the first book.
+This image is 1200x800 with 500 samples per pixel, and the render took about 6
+minutes on my 2019 MacBook Pro 2.3 GHz 8-Core Intel Core i9.
+
+<img src="{static}/images/raytracing_cover_render.png", width="100%">
 
 ## The Vec3 Class
 

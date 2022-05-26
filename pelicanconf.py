@@ -29,8 +29,8 @@ TIMEZONE = 'America/New_York'
 
 DEFAULT_LANG = 'en'
 
-PLUGIN_PATHS = ['/Users/ash/src/Not Work/pelican-plugins']
-PLUGINS = ['render_math']
+PLUGIN_PATHS = ['/Users/aanderson/src/Not Work/pelican-plugins']
+PLUGINS = ['render_math', 'sitemap']
 
 MATH_JAX = {'align' : 'left', 'indent' : '3cm'}
 
@@ -50,7 +50,6 @@ AUTHOR_FEED_RSS = None
 # Social widget
 # SOCIAL = (('You can add links in your config file', '#'),
 #           ('Another social link', '#'),)
-
 DEFAULT_PAGINATION = False
 
 # Uncomment following line if you want document-relative URLs when developing
@@ -59,3 +58,7 @@ RELATIVE_URLS = True
 THEME = './theme'
 THEME_STATIC_DIR = './theme/static'
 HEADER_COVER = '/images/piestewa_1024.jpg'
+
+GITHUB_URL = 'https://github.com/aganders3'
+TWITTER_URL = 'https://twitter.com/aganders3'
+
