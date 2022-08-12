@@ -70,5 +70,5 @@ Weekend_](https://raytracing.github.io).
 Initially I was building it for wasm - you can see the live demo of that
 [here](https://aga3.xyz/wasm-ray/), but ultimately it was too slow to be fun
 and I switched to local rendering. This also let me learn about "fearless
-parallelism" in Rust, which was nice. I'm planning to keep this project going
+concurrency" in Rust, which was nice. I'm planning to keep this project going
 for a while in some form.
