@@ -1,5 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>:wq</title><link href="https://aga3.xyz/" rel="alternate"></link><link href="https://aga3.xyz/feeds/all.atom.xml" rel="self"></link><id>https://aga3.xyz/</id><updated>2021-05-28T23:36:00-04:00</updated><subtitle>a catalog of stuff I happen to write down</subtitle><entry><title>Raytracing in Rust Part 1</title><link href="https://aga3.xyz/2021/05/raytracing-in-rust-part-1" rel="alternate"></link><published>2021-05-28T23:36:00-04:00</published><updated>2021-05-28T23:36:00-04:00</updated><author><name>Ashley Anderson</name></author><id>tag:aga3.xyz,2021-05-28:/2021/05/raytracing-in-rust-part-1</id><summary type="html">&lt;p&gt;I write a lot of Python, but I wanted to get back into practice with a
+<feed xmlns="http://www.w3.org/2005/Atom"><title>:wq</title><link href="https://aga3.xyz/" rel="alternate"></link><link href="https://aga3.xyz/feeds/all.atom.xml" rel="self"></link><id>https://aga3.xyz/</id><updated>2022-07-27T15:18:00-04:00</updated><subtitle>a catalog of stuff I happen to write down</subtitle><entry><title>Should you pad your FFT for performance?</title><link href="https://aga3.xyz/2022/07/should-you-pad-your-fft-for-performance" rel="alternate"></link><published>2022-07-27T15:18:00-04:00</published><updated>2022-07-27T15:18:00-04:00</updated><author><name>Ashley Anderson</name></author><id>tag:aga3.xyz,2022-07-27:/2022/07/should-you-pad-your-fft-for-performance</id><summary type="html"></summary><content type="html">&lt;p&gt;Fast Fourier Transform (FFT) algorithms &lt;a href="https://en.wikipedia.org/wiki/Cooley–Tukey_FFT_algorithm"&gt;typically
+operate&lt;/a&gt; by
+recursively (though perhaps not literally using recursion in the code) breaking
+down the input into prime-factor-length sub-problems. Thus, the overall speed of
+the funciton depends on the largest prime factor, and prime inputs may be slow
+because they can't be broken down at all.&lt;/p&gt;
+&lt;p&gt;But how much slower are these prime inputs? If they're much slower, we may want
+to pad the input with zeros. This is generally okay, but depending on your
+input may cause window-related artifacts in your output.&lt;/p&gt;
+&lt;p&gt;Here's a quick benchmark of a 1D complex FFT using &lt;code&gt;scipy.fft&lt;/code&gt; (which I believe
+uses &lt;a href="https://gitlab.mpcdf.mpg.de/mtr/pocketfft"&gt;&lt;code&gt;pocketFFT&lt;/code&gt;&lt;/a&gt;). This shows the
+minimum execution time of 10 runs for random (uniform) complex data up to input
+length 2**16. Prime inputs are highlighted by the red dots.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://aga3.xyz/images/fft_bench.png", width="100%"&gt;&lt;/p&gt;
+&lt;p&gt;My takeaways here are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;FFT of primes is definitely slower, up to ~5x (eyeballing it from the graph)&lt;/li&gt;
+&lt;li&gt;Still, FFT is generally very fast even for large inputs&lt;/li&gt;
+&lt;li&gt;Remember padding the input to avoid primes will also take some time (and
+  memory) and may introduce window artifacts (though not padding doesn't
+  guarantee absence of artifacts)&lt;/li&gt;
+&lt;li&gt;As always, benchmark your specific application to see if this is meaningful
+  (e.g. if you're doing an N-D FFT or calling it in a tight loop)&lt;/li&gt;
+&lt;/ul&gt;</content><category term="articles"></category></entry><entry><title>Raytracing in Rust Part 1</title><link href="https://aga3.xyz/2021/05/raytracing-in-rust-part-1" rel="alternate"></link><published>2021-05-28T23:36:00-04:00</published><updated>2021-05-28T23:36:00-04:00</updated><author><name>Ashley Anderson</name></author><id>tag:aga3.xyz,2021-05-28:/2021/05/raytracing-in-rust-part-1</id><summary type="html">&lt;p&gt;I write a lot of Python, but I wanted to get back into practice with a
 lower-level language. I've done a decent amount of C and C++ programming, but
 it seems like everyone who tries Rust really likes it so I took it for a spin.&lt;/p&gt;
 &lt;p&gt;You can find my …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I write a lot of Python, but I wanted to get back into practice with a
