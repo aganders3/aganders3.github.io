@@ -18,6 +18,8 @@ FEED_ALL_ATOM = 'feeds/all.atom.xml'
 
 DELETE_OUTPUT_DIRECTORY = True
 
+SITEMAP = {'format': 'xml'}
+
 # Following items are often useful when publishing
 
 #DISQUS_SITENAME = ""
