@@ -138,27 +138,27 @@ For this extension, the only thing we need is a style sheet. Put one in the
 extension folder (<cite>&lt;extension_name&gt;.safariexension</cite>) next to the <cite>Info.plist</cite>
 file. Use <a class="reference external" href="https://www.w3.org/TR/selectors/#attribute-substrings">substring matching selectors</a> to filter for URLs you want to
 decorate. Here's how I have it set up:</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nt">a</span><span class="o">[</span><span class="nt">href</span><span class="o">*=</span><span class="s2">&quot;forbes.com&quot;</span><span class="o">],</span>
-<span class="nt">a</span><span class="o">[</span><span class="nt">href</span><span class="o">*=</span><span class="s2">&quot;wired.com&quot;</span><span class="o">]</span> <span class="p">{</span>
-    <span class="k">color</span><span class="p">:</span> <span class="mh">#8B0000</span> <span class="cp">!important</span><span class="p">;</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><span class="nt">a</span><span class="o">[</span><span class="nt">href</span><span class="o">*=</span><span class="s2">&quot;forbes.com&quot;</span><span class="o">],</span>
+<span class="nt">a</span><span class="o">[</span><span class="nt">href</span><span class="o">*=</span><span class="s2">&quot;wired.com&quot;</span><span class="o">]</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#8B0000</span><span class="w"> </span><span class="cp">!important</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="nt">a</span><span class="o">[</span><span class="nt">href</span><span class="o">*=</span><span class="s2">&quot;forbes.com&quot;</span><span class="o">]</span><span class="p">::</span><span class="nd">after</span><span class="o">,</span>
-<span class="nt">a</span><span class="o">[</span><span class="nt">href</span><span class="o">*=</span><span class="s2">&quot;wired.com&quot;</span><span class="o">]</span><span class="p">::</span><span class="nd">after</span> <span class="p">{</span>
-    <span class="k">font-size</span><span class="p">:</span> <span class="mi">50</span><span class="kt">%</span><span class="p">;</span>
-    <span class="k">content</span><span class="p">:</span> <span class="s2">&quot;😱&quot;</span><span class="p">;</span>
+<span class="nt">a</span><span class="o">[</span><span class="nt">href</span><span class="o">*=</span><span class="s2">&quot;wired.com&quot;</span><span class="o">]</span><span class="p">::</span><span class="nd">after</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="kt">%</span><span class="p">;</span>
+<span class="w">    </span><span class="k">content</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;😱&quot;</span><span class="p">;</span>
 <span class="p">}</span>
-</pre></div>
-</td></tr></table><p>Select that file in the Extension Builder, and install your extension. Now my
+</pre></div></td></tr></table></div>
+<p>Select that file in the Extension Builder, and install your extension. Now my
 links look like this:</p>
 <img alt="links decorated with user style rules" src="/images/0001/decorated_links.png" style="width: 100%;" />
 <p>Anyway, this is just one controversial use, but I'm keeping track of the

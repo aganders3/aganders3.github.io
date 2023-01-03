@@ -165,10 +165,9 @@ $$</div>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </code></pre></div>
 
-
 <p>Next let's do a straight port of the <a href="https://web.stanford.edu/~boyd/papers/admm/total_variation/total_variation.html">Matlab code</a>, going through it piece-by-piece. Let's start with the function definition, docstring (basically plagiarized from the example), and some constants used for stopping criteria.</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">total_variation</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">lam</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">alpha</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Solve total variation minimization via ADMM</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Solve total variation minimization via ADMM</span>
 
 <span class="sd">    Solves the following problem via ADMM:</span>
 
@@ -198,7 +197,6 @@ $$</div>
     <span class="n">RELTOL</span> <span class="o">=</span> <span class="mf">1e-2</span>
 </code></pre></div>
 
-
 <p>The following chunk of code is some variable initialization, and we pre-calculate the (sparse) difference matrix <span class="math">\(D\)</span> used for calculating TV, as well as the product with its own transpose (<span class="math">\(DtD\)</span>) which will be used later.</p>
 <div class="highlight"><pre><span></span><code>    <span class="o">...</span>
 
@@ -227,7 +225,6 @@ $$</div>
                <span class="s1">&#39;eps_dual&#39;</span><span class="p">:</span> <span class="p">[]}</span>
 </code></pre></div>
 
-
 <p>Here's the ADMM algorithm itself showing the <span class="math">\(x\)</span>, <span class="math">\(z\)</span>, and <span class="math">\(y\)</span> (<span class="math">\(u\)</span>) updates. Here is where Chapter 4 in the ADMM paper referenced above is very helpful in describing methods for solving the sub-problems based on the form of the objective terms. The <span class="math">\(x\)</span> update is for the <span class="math">\(f(x)\)</span> term and we're using a "direct method" to solve it since the objective is quadratic (see 4.2). The <span class="math">\(z\)</span> update uses soft thresholding (see 4.4.3) since the <span class="math">\(g(z)\)</span> objective is to minimize the L1 norm. This implementation also makes use of the scaled dual variable <span class="math">\(u=y/\rho\)</span> (3.1.1) and (over-)relaxation with the parameter <code>alpha</code>, which can improve convergence (3.4.3).</p>
 <div class="highlight"><pre><span></span><code>    <span class="o">...</span>
 
@@ -248,7 +245,6 @@ $$</div>
         <span class="c1"># u is the scaled dual variable y/rho (ADMM paper 3.1.1)</span>
         <span class="n">u</span> <span class="o">=</span> <span class="n">u</span> <span class="o">+</span> <span class="n">Ax_hat</span> <span class="o">-</span> <span class="n">z</span>
 </code></pre></div>
-
 
 <p>With the updates out of the way, we will keep track of some calculated values in the <code>history</code> dictionary to evaluate performance and convergence. Finally we will check for convergence based on both absolute and relative tolerances of the primal and dual residuals.</p>
 <div class="highlight"><pre><span></span><code>    <span class="o">...</span>
@@ -276,17 +272,15 @@ $$</div>
     <span class="k">return</span> <span class="n">history</span><span class="p">,</span> <span class="n">x</span>
 </code></pre></div>
 
-
 <p>Lastly, there are two small functions used above that we will still need to define: the objective value is a straightforward code implementation of our stated problem, and the shrinkage function is used for soft-thresholding (moves all values of its input toward 0).</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">TV_denoising_objective</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">lam</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;TV denoising objective calculation&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;TV denoising objective calculation&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">lam</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">shrinkage</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">kappa</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Soft-thresholding of `a` with threshold `kappa`&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Soft-thresholding of `a` with threshold `kappa`&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="n">kappa</span><span class="p">,</span> <span class="n">a_min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">a_max</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="o">-</span><span class="n">kappa</span><span class="p">,</span> <span class="n">a_min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">a_max</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p>Great, now we're ready to run it and see how it works. We'll try it with three different values for <span class="math">\(\lambda\)</span>.</p>
 <div class="highlight"><pre><span></span><code><span class="o">%</span><span class="n">time</span> <span class="n">hist</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">total_variation</span><span class="p">(</span><span class="n">b_</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
@@ -302,7 +296,6 @@ $$</div>
 <span class="n">Wall</span> <span class="n">time</span><span class="p">:</span> <span class="mf">1.08</span> <span class="n">s</span>
 </code></pre></div>
 
-
 <p><img src="https://aga3.xyz/images/tv_denoising.png" class="center-block img-responsive"/></p>
 <h2>A Matrix-Free Implementation</h2>
 <p>It's nice when you can form a matrix operator and take advantage of existing clever linear algebra algorithms to efficiently compute things, but this is not always practical. Especially when dealing with (vectorized) images, for example, where even sparse matrices can be difficult to form or store efficiently. Additionally, many linear transformations - such as spatially variant blurring - don't have convenient (i.e. structured and/or sparse) matrix forms. This is where matrix-free methods come into play. Often we don't actually need a matrix if we can calculate matrix-vector products.</p>
@@ -310,7 +303,7 @@ $$</div>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">scipy.sparse.linalg</span> <span class="kn">import</span> <span class="n">LinearOperator</span><span class="p">,</span> <span class="n">cg</span>
 
 <span class="k">def</span> <span class="nf">matrix_free_tv</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">lam</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">alpha</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Solve total variation minimization via ADMM *without forming the difference matrices*</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Solve total variation minimization via ADMM *without forming the difference matrices*</span>
 
 <span class="sd">    Solves the following problem via ADMM:</span>
 
@@ -400,7 +393,6 @@ $$</div>
     <span class="k">return</span> <span class="n">history</span><span class="p">,</span> <span class="n">x</span>
 </code></pre></div>
 
-
 <p>Now I'll run this again with the same three <span class="math">\(\lambda\)</span> values from the original version:</p>
 <div class="highlight"><pre><span></span><code><span class="o">%</span><span class="n">time</span> <span class="n">hist</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">matrix_free_tv</span><span class="p">(</span><span class="n">b_</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
 <span class="n">CPU</span> <span class="n">times</span><span class="p">:</span> <span class="n">user</span> <span class="mi">343</span> <span class="n">ms</span><span class="p">,</span> <span class="n">sys</span><span class="p">:</span> <span class="mi">273</span> <span class="n">µs</span><span class="p">,</span> <span class="n">total</span><span class="p">:</span> <span class="mi">344</span> <span class="n">ms</span>
@@ -414,7 +406,6 @@ $$</div>
 <span class="n">CPU</span> <span class="n">times</span><span class="p">:</span> <span class="n">user</span> <span class="mi">512</span> <span class="n">ms</span><span class="p">,</span> <span class="n">sys</span><span class="p">:</span> <span class="mf">3.7</span> <span class="n">ms</span><span class="p">,</span> <span class="n">total</span><span class="p">:</span> <span class="mi">515</span> <span class="n">ms</span>
 <span class="n">Wall</span> <span class="n">time</span><span class="p">:</span> <span class="mi">513</span> <span class="n">ms</span>
 </code></pre></div>
-
 
 <p><img src="https://aga3.xyz/images/matrix_free_tv_denoising.png" class="center-block img-responsive"/></p>
 <p>The results are similar but not quite identical, so I'm guessing my <code>LinearOperator</code> is incorrect by a bit somewhere. However, the matrix-free version actually seems slightly better at preserving the flatness in the valleys. This version is also significantly faster with increasing input length, though it's notable the matrix implementation is faster for small inputs (runtime also changes with <span class="math">\(\lambda\)</span>). Of course neither implementation is necessarily optimized - this is more of a casual observation about my initial naïve implementations. The ADMM paper gives some additional recommendations for speeding things up when using direct (as in the first implementation above) or iterative (as with my matrix-free implementation) techniques.</p>
