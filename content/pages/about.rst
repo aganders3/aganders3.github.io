@@ -2,18 +2,14 @@ About Me
 ########
 :status: published
 :date: 2016-03-31 15:00
-:summary: I ride bikes and spin protons
+:summary: Ride bikes, strum strings, edit text
 :header_cover: /images/piestewa_1024.jpg
 
 I'm a software engineer with a background in medical imaging, and I currently
-work at Hyperfine_--a medical device startup in Connecticut. I use Python for
-scientific and general programming at work, and hobby programming on the side.
-I (not-so) recently shipped my first iOS app, written in Swift. More recently,
-I have been learning about Rust and getting back to graphics programming, which
-I had not done since graduate school.
+work at CZI_ on open source for science. I favor Python and Rust for scientific
+and general programming at work, and hobby programming on the side.
 
-.. _Hyperfine: https://hyperfine.io
+.. _CZI: https://chanzuckerberg.com
 
-In my free time I ride bicycles on all kinds of terrain, and spend time cooking
-and chilling with my family.
-
+In my free time I enjoy cooking and hiking with my family, bicycling on all
+kinds of terrain, and playing guitar and piano (rather poorly).
